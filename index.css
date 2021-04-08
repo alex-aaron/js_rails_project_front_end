@@ -1,0 +1,49 @@
+body {
+    padding: 10px;
+}
+
+@font-face {
+    font-family: 'itc-serif-gothic-lt-heavy.ttf';
+    src: url('assets/itc-serif-gothic-lt-heavy.ttf');
+}
+
+#message-board-title {
+    color: orange;
+    font-family: 'itc-serif-gothic-lt-heavy.ttf';
+    text-align: center;
+}
+
+.message-container {
+    padding: 2px;
+    border-color: black;
+    border-width: 2.5px;
+    border-style: solid;
+}
+
+#post-form {
+    margin: auto;
+    padding: 10px;
+    width: 330px;
+    border-color: black;
+    border-width: 2.5px;
+    border-style: solid;
+}
+
+.movie-pic {
+    border-radius: 50%;
+}
+
+#title {
+    width: 300px;
+}
+
+#row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+#thing-pic {
+    margin-left: 100px;
+}
