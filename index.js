@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    createForm();
     fetchMessages(); // fetches all existing messages and renders them to DOM
-    document.getElementById('user-form').addEventListener('submit', handleNewUser);
     document.getElementById('post-form').addEventListener('submit', handleNewPost);
     // create new user
     // create post
@@ -15,59 +13,55 @@ function fetchMessages() {
     .then(resp => resp.json())
     .then(messages => {
         for (const message of messages) {
-            let m = new Post(message.title, message.content, message.userId);
+            let m = new Post(message.id, message.title, message.content, message.created_at);
             m.renderMessage();
+            if (message.comments) {
+                let comments = message.comments;
+                for (const element of comments) {
+                    let c = new Comment(element.id, m.id, element.content, element.created_at);
+                    c.renderComment();
+                }
+            } 
         }
     })
 }
 
-// function fetchUsers() {
-//     fetch(BASE_URL)
-//     .then(resp => resp.json())
-//     .then(users => {
-
-//     })
-// }
-
-function createForm() {
-    let userForm = document.getElementById('user-form');
-    userForm.innerHTML += 
-    `
-    <form>
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
-        
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email">
-
-        <input type="submit" value="Submit" id="user-form-submit">
-    </form>
-    `
-}
-
-function handleNewUser(e) {
+function handlePostComment(e) {
     e.preventDefault();
-    let userName = document.getElementById("username").value;
-    let email = document.getElementById("email").value
+   
 
-    let user = {
-        username: userName,
-        email: email
+    console.log('form submitted')
+    let content = e.target.firstElementChild.value;
+    let idArr = e.target.id.split("-");
+    let postId = parseFloat(idArr[2]);
+    let comment = {
+        post_id: postId,
+        content
     }
-
-    fetch('http://localhost:3000/users', {
+    e.target.reset()
+    fetch('http://localhost:3000/comments', {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(comment)
     })
-    .then(resp => resp.json())
-    .then(user => {
-        let u = new User(user.id, user.username, user.email);
+    .then(resp => {
+        if (!resp.ok){
+            return resp.json().then(e => {throw(e)})
+        }
+        return resp.json()})
+    .then(comment => {
+        let c = new Comment(comment.id, comment.post_id, comment.content, comment.created_at);
+        c.renderComment();
+    })
+    .catch(e => {
+        console.error(e)
     });
 }
+
+
 
 function handleNewPost(e) {
     e.preventDefault();
@@ -76,8 +70,7 @@ function handleNewPost(e) {
 
     let post = {
         title: title,
-        content: content,
-        user_id: "???"
+        content: content
     }
 
     fetch('http://localhost:3000/posts', {
@@ -90,6 +83,10 @@ function handleNewPost(e) {
     })
     .then(resp => resp.json())
     .then(post => {
-        let p = new User(user.id, user.username, user.email);
+    
+        let p = new Post(post.id, post.title, post.content, post.createdAt);
+        p.renderMessage();
     });
 }
+
+

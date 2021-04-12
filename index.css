@@ -13,11 +13,42 @@ body {
     text-align: center;
 }
 
-.message-container {
-    padding: 2px;
+.message {
+    overflow: hidden;
+    padding: 5px;
+    border-radius: 10px;
     border-color: black;
     border-width: 2.5px;
     border-style: solid;
+}
+
+.message-title {
+    float: left;
+}
+
+.message-created-date {
+    float: right;
+}
+
+.comment-container {
+    padding: 5px;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 2.5px;
+    border-style: solid;
+    margin-left: 40px;
+}
+
+.comment-form {
+    overflow: hidden;
+}
+
+.comment-text-area {
+    float: right;
+}
+
+.comment-submit {
+    float: right;
 }
 
 #post-form {
