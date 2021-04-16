@@ -17,7 +17,7 @@ function fetchMessages() {
             m.renderMessage();
             if (message.comments) {
                 let comments = message.comments;
-                for (const element of comments) {
+                for (let element of comments) {
                     let c = new Comment(element.id, m.id, element.content, element.created_at);
                     c.renderComment();
                 }
@@ -28,8 +28,6 @@ function fetchMessages() {
 
 function handlePostComment(e) {
     e.preventDefault();
-   
-
     console.log('form submitted')
     let content = e.target.firstElementChild.value;
     let idArr = e.target.id.split("-");
@@ -61,8 +59,6 @@ function handlePostComment(e) {
     });
 }
 
-
-
 function handleNewPost(e) {
     e.preventDefault();
     let title = document.getElementById('title').value;
@@ -87,6 +83,26 @@ function handleNewPost(e) {
         let p = new Post(post.id, post.title, post.content, post.createdAt);
         p.renderMessage();
     });
+}
+
+function handleAdminDelete(e) {
+    e.preventDefault;
+    let content = 'Comment deleted';
+    let postIdArr = e.target.parentElement.parentElement.parentElement.id.split("-");
+    let postId = parseFloat(postIdArr[1]);
+    let commentIdArr = e.target.parentElement.id.split("-");
+    let commentId = parseFloat(commentIdArr[1]);
+    let editedComment = {
+        id: commentId,
+        post_id: postId,
+        content: content
+    };
+
+    fetch(`http://localhost:3000/comments/${commentId}`, {
+        method: "DELETE"
+    });
+    location.reload();
+    return false;
 }
 
 

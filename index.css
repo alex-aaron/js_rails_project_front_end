@@ -13,6 +13,10 @@ body {
     text-align: center;
 }
 
+.message-container {
+    padding: 10px;
+}
+
 .message {
     overflow: hidden;
     padding: 5px;
