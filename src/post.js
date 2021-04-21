@@ -7,7 +7,6 @@ class Post {
         this.createdAt = createdAt;
     }
 
-    //instance method to render posts to DOM
     renderMessage() {
         let messageBoard = document.getElementById("message-board-container");
         let div = document.createElement('div');
