@@ -14,8 +14,12 @@ class Comment {
         let commentDiv = document.createElement('div');
         commentDiv.setAttribute("class", "comment-container");
         commentDiv.id = `comment-${this.id}`;
+        let postedDate = this.createdAt;
+        let postedDateStr = postedDate.toString();
+        let date = new Date(postedDateStr);
         commentDiv.innerHTML = `
             <p>${this.content}</p>
+            <p class="comment-posted-date"><i>${date}</i></p>
         `;
         let button = document.createElement('button');
         button.setAttribute("type", "submit");

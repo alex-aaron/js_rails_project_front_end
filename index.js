@@ -80,29 +80,25 @@ function handleNewPost(e) {
     .then(resp => resp.json())
     .then(post => {
     
-        let p = new Post(post.id, post.title, post.content, post.createdAt);
+        let p = new Post(post.id, post.title, post.content, post.created_at);
         p.renderMessage();
     });
 }
 
 function handleAdminDelete(e) {
-    e.preventDefault;
-    let content = 'Comment deleted';
+    e.preventDefault();
+    let el = e.target.parentElement.parentElement;
     let postIdArr = e.target.parentElement.parentElement.parentElement.id.split("-");
     let postId = parseFloat(postIdArr[1]);
     let commentIdArr = e.target.parentElement.id.split("-");
     let commentId = parseFloat(commentIdArr[1]);
-    let editedComment = {
-        id: commentId,
-        post_id: postId,
-        content: content
-    };
 
     fetch(`http://localhost:3000/comments/${commentId}`, {
         method: "DELETE"
     });
-    location.reload();
-    return false;
+    // location.reload();
+    // return false;
+    el.remove();
 }
 
 
