@@ -27,13 +27,6 @@ class Comment {
         button.addEventListener('click', handleAdminDelete);
         commentDiv.appendChild(button);
         div.appendChild(commentDiv);
-        // div.innerHTML = 
-        // `
-        // <br>
-        // <div class="comment-container">
-        //     <p>${this.content}</p>
-        // </div>
-        // `
         messageDiv.append(div);
     }
 }

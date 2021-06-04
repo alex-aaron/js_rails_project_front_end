@@ -13,10 +13,6 @@ class Post {
         let postedDate = this.createdAt;
         let postedDateStr = postedDate.toString();
         let date = new Date(postedDateStr);
-        // let button = document.createElement('button');
-        // button.innerHTML = 'Admin Delete';
-        // button.setAttribute("type", "submit");
-        // button.addEventListener('click', handleAdminDelete);
         div.setAttribute("class", "message-container");
         div.id = `message-${this.id}`;
         let messageDiv = document.createElement('div');
@@ -26,7 +22,6 @@ class Post {
             <p class="message-created-date">Posted: ${date}</p><br><hr>
             <p class="message-content">${this.content}</p>
         `;
-        //messageDiv.appendChild(button);
         div.appendChild(messageDiv);
         let br = document.createElement('br');
         div.appendChild(br);

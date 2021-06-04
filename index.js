@@ -1,12 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetchMessages(); // fetches all existing messages and renders them to DOM
+    createSearchInput();
     document.getElementById('post-form').addEventListener('submit', handleNewPost);
-    // create new user
-    // create post
-    // delete post
 })
-
-const BASE_URL = "google.com";
 
 function fetchMessages() {
     fetch('http://localhost:3000/posts')
@@ -147,4 +143,42 @@ function handleAdminDelete(e) {
     el.remove();
 }
 
+function createSearchInput() {
+    let div = document.createElement('div');
+    let input = document.createElement('input');
+    input.id = "search-input";
+    let button = document.createElement('button');
+    button.setAttribute("type", "submit");
+    button.innerHTML = "Submit";
+    button.addEventListener("click", handleSearchInput);
+    div.appendChild(input);
+    div.appendChild(button);
+    document.body.appendChild(div);
+}
 
+function handleSearchInput() {
+
+    let userSearch = document.getElementById('search-input').value; // Fa
+    let messageBoard = document.getElementById('message-board-container');
+
+    fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+    .then(messages => {
+        messageBoard.innerHTML = "";
+        for (const message of messages) {
+            // only create Javascript objects for post titles beginning with Fa
+            if (message.title.includes(userSearch)) {
+                let m = new Post(message.id, message.title, message.content, message.created_at);
+                m.renderMessage();
+                if (message.comments) {
+                    let comments = message.comments;
+                    for (let element of comments) {
+                        let c = new Comment(element.id, m.id, element.content, element.created_at);
+                        c.renderComment();
+                    }
+                }
+            }
+        }
+    })
+
+}
