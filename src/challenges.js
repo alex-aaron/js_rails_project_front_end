@@ -1,5 +1,5 @@
-let sampleStr = "abcac";
-let num = 13;
+let sampleStr = "a";
+let num = 100000;
 
 function repeatedString(s, n) {
     let subString = "";
@@ -8,9 +8,10 @@ function repeatedString(s, n) {
         subString = s.slice(0, n);
     }
     else if (s.length < n) {
-        let repeat = Math.floor(n / s.length); // 2
+        let repeatNum = Math.floor(n / s.length); // 2
+        console.log
         let remainder = n % s.length; // 3
-        subString = s.repeat(2); // abcacabcac
+        subString = s.repeat(repeatNum); // abcacabcac
         for (let i = 0; i < remainder; i++) {
             subString += s[i];
         }

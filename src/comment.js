@@ -29,4 +29,6 @@ class Comment {
         div.appendChild(commentDiv);
         messageDiv.append(div);
     }
+
+    # create
 }
