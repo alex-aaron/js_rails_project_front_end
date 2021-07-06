@@ -138,8 +138,6 @@ function handleAdminDelete(e) {
     fetch(`http://localhost:3000/comments/${commentId}`, {
         method: "DELETE"
     });
-    // location.reload();
-    // return false;
     el.remove();
 }
 
@@ -158,7 +156,7 @@ function createSearchInput() {
 
 function handleSearchInput() {
 
-    let userSearch = document.getElementById('search-input').value; // Fa
+    let userSearch = document.getElementById('search-input').value; 
     let messageBoard = document.getElementById('message-board-container');
 
     fetch('http://localhost:3000/posts')
@@ -166,7 +164,6 @@ function handleSearchInput() {
     .then(messages => {
         messageBoard.innerHTML = "";
         for (const message of messages) {
-            // only create Javascript objects for post titles beginning with Fa
             if (message.title.includes(userSearch)) {
                 let m = new Post(message.id, message.title, message.content, message.created_at);
                 m.renderMessage();
