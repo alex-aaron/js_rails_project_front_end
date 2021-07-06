@@ -1,28 +1,29 @@
-let sampleStr = "a";
-let num = 100000;
+let num = 9;
+let sampleArr = [10, 20, 20, 10, 10, 30, 50, 10, 20];
 
-function repeatedString(s, n) {
-    let subString = "";
-    let numA = 0;
-    if (s.length > n) {
-        subString = s.slice(0, n);
-    }
-    else if (s.length < n) {
-        let repeatNum = Math.floor(n / s.length); // 2
-        console.log
-        let remainder = n % s.length; // 3
-        subString = s.repeat(repeatNum); // abcacabcac
-        for (let i = 0; i < remainder; i++) {
-            subString += s[i];
+function sockMerchant(n, ar) {
+    let sockObj = {};
+    let numPairs = 0;
+    for (const element of ar) {
+        if (sockObj[element] === undefined) {
+            sockObj[element] = 1;
+        }
+        else {
+            sockObj[element] += 1;
         }
     }
-    for (let i = 0; i < subString.length; i++) {
-        if (subString[i] === "a") {
-            numA += 1;
+    for (let key in sockObj) {
+        if (sockObj[key] % 2 === 0) {
+            let indPairs = sockObj[key] / 2;
+            numPairs += indPairs;
+        }
+        else {
+            indPairs = Math.floor(sockObj[key] / 2);
+            numPairs += indPairs;
         }
     }
-    return numA;
+    return numPairs;
 }
 
-let output = repeatedString(sampleStr, num);
+let output = sockMerchant(num, sampleArr);
 console.log(output);
