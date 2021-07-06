@@ -14,12 +14,14 @@ function isPalindrome(str) {
         }
     }
     else {
+        console.log("word is even");
         let stopIndex = str.length / 3;
         for (let i = 0; i <= stopIndex; i++) {
-            if (str[i] === str[str.length - (i + 1)])
-            letterMatch += 1;
-            if (letterMatch === str.length /2) {
-                return true;
+            if (str[i] === str[str.length - (i + 1)]) {
+                letterMatch += 1;
+                if (letterMatch === str.length /2) {
+                    return true;
+                }
             }
         }
     }
