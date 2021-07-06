@@ -1,13 +1,15 @@
-let word = "racecar";
+let word = "alex";
 
 function isPalindrome(str) {
-    let palindrome;
+    let letterMatch = 0;
     if (str.length % 2 !== 0) {
         let oddMidIndex = Math.floor(str.length / 2);
         for (let i = 0; i < oddMidIndex; i++) {
             if (str[i] === str[str.length - (i + 1)]) {
-                
-                return letterMatch;
+                letterMatch += 1;
+                if (letterMatch === Math.floor(str.length / 2)) {
+                    return true;
+                }
             }
         }
     }
@@ -16,6 +18,9 @@ function isPalindrome(str) {
         for (let i = 0; i <= stopIndex; i++) {
             if (str[i] === str[str.length - (i + 1)])
             letterMatch += 1;
+            if (letterMatch === str.length /2) {
+                return true;
+            }
         }
     }
 }
