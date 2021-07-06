@@ -1,11 +1,22 @@
-let word = "ana";
+let word = "racecar";
 
 function isPalindrome(str) {
+    let palindrome;
     if (str.length % 2 !== 0) {
-        console.log("string is odd");
+        let oddMidIndex = Math.floor(str.length / 2);
+        for (let i = 0; i < oddMidIndex; i++) {
+            if (str[i] === str[str.length - (i + 1)]) {
+                
+                return letterMatch;
+            }
+        }
     }
     else {
-        console.log("string is even");
+        let stopIndex = str.length / 3;
+        for (let i = 0; i <= stopIndex; i++) {
+            if (str[i] === str[str.length - (i + 1)])
+            letterMatch += 1;
+        }
     }
 }
 
