@@ -1,39 +1,14 @@
-let word = "alex";
+let arr = [0, 0, 1, 0, 0, 1, 0];
 
-function isPalindrome(str) {
-    let letterMatch = 0;
-    if (str.length % 2 !== 0) {
-        let oddMidIndex = Math.floor(str.length / 2);
-        for (let i = 0; i < oddMidIndex; i++) {
-            if (str[i] === str[str.length - (i + 1)]) {
-                letterMatch += 1;
-                if (letterMatch === Math.floor(str.length / 2)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
+function jumpingOnClouds(c) {
+    let jumps = 0;
+    for (let i = 0; i < c.length; i++) {
+        if (c[i + 1] === 0) {
+            jumps += 1;
         }
     }
-    else {
-        console.log("word is even");
-        let stopIndex = (str.length / 2) - 1;
-        console.log(stopIndex);
-        for (let i = 0; i < stopIndex; i++) {
-            if (str[i] === str[str.length - (i + 1)]) {
-                letterMatch += 1;
-                console.log(letterMatch);
-                if (letterMatch === str.length /2) {
-                    return true;
-                }
-                else {
-                    return false
-                }
-            }
-        }
-    }
+    return jumps;
 }
 
-let output = isPalindrome(word);
+let output = jumpingOnClouds(arr);
 console.log(output);
